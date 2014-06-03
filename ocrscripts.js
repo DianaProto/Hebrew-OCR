@@ -2,46 +2,65 @@
 
 			$(document).ready(function()
 			{
-				var letter=0;
-				var letters = ["A","B","G","D","H"];
+				
+				var letters = [
+					{name: "Alef", symbol: "A"},
+					{name: "Bet", symbol: "B"},
+					{name: "Gimel", symbol: "G"},
+					{name: "Dalet", symbol: "D"},
+					{name: "Hey", symbol: "H"}
+				];
+				
 				
 				$("#recognize").click(function()
 				{
 				  	var candidate_score = 0;
 				  	var ideal_weight = 0;
-				  	
+				  	var maxRq=0;
+				  	var maxRqIndex=0;
+				  	var letter=0;
 
 				  	for (i=0; i< letters.length;i++)
 				  	{
+				  		
 					  	$('.input_check').each(function(index) 
 					  	{
-					  		var val = $('#'+(index+1)+letters[i]).text();
+					  		var val = $('#'+(index+1)+letters[i].symbol).text();
 					  		
 					  		if($(this).css("background-color")=="rgb(85, 85, 85)"){
 					  			val = val * 1;
 					  		}else{
 					  			val = val * 0;
 					  		}
-					  		candidate_score += val;
+					  		candidate_score += val;	
 					  	});
-
+					  	
 				  		$('.weight').each(function(index) 
 				  		{
-					  		var val = $('#'+(index+1)+letters[i]).text();
+					  		var val = $('#'+(index+1)+letters[i].symbol).text();
 					  		if(val > 0)
 					  		{
 					  			ideal_weight += val * 1;
 					  		}
 				  		});
-					  	
-					  	
-					  	$('#rq'+letters[i]).text( Math.round((candidate_score / ideal_weight) * 100) / 100);
-						
-					  	candidate_score = 0;
-					  	ideal_weight = 0;
 
+					  	letters[i].rq = Math.round((candidate_score / ideal_weight) * 100) / 100;
+
+					  	candidate_score = 0;
+					  	ideal_weight = 0; 	
 				  	}
 
+				  	console.log(letters);
+
+				  	for(var j=0;j<letters.length; j++){
+
+				  		if (letters[j].rq > maxRq) {
+				  			maxRq = letters[j].rq;
+				  			maxRqIndex = j;
+				  		}
+				  	}
+
+				  	$('#guessLetter').text(letters[maxRqIndex].name);
 
 				  	$('.input_check').each(function(index) 
 				  	{
@@ -51,33 +70,33 @@
 				});
 
 				$("#show").click(function(){
-				$('.learningSet').slideToggle();
+					$('.learningSet').slideToggle();
 			  	});
 
 				
-			  var isDown = false;
+			 	 var isDown = false;
 			
-			  $(document).mousedown(function() 
-			  {
-			    isDown = true;
-			  })
-			  .mouseup(function() 
-			  {
-			    isDown = false;
-			  });
+			 	 $(document).mousedown(function() 
+			 	 {
+			  		isDown = true;
+			  	})
+			 	 .mouseup(function() 
+				{
+			 		isDown = false;
+			 	});
 			
 
 
 
 			for (var i=0; i<letters.length; i++)
 			{
-			  $(".input"+letters[i]).mouseover(function(){
+			  $(".input"+letters[i].symbol).mouseover(function(){
 			    if(isDown) {        // Only change css if mouse is down
 			    	$(this).css("background-color","#555");
 			    }
 			  });
 			  
-			  $(".input"+letters[i]).click(function(){
+			  $(".input"+letters[i].symbol).click(function(){
 			    $(this).css("background-color","#555");
 			  });
 			  
