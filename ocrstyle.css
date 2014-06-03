@@ -1,0 +1,37 @@
+table{
+				border-spacing: 1px;
+				float: left;
+				margin-right: 50px;
+				cursor: pointer;
+			}
+			
+			td{
+				background-color: #dedede;
+				width:  20px;
+				height: 30px;
+			}
+			
+			hr{
+				border-width: 1px;
+				border-style: dashed;
+				border-color: #BBB;
+				border-bottom-style: none;
+			}
+
+			#A,#B,#G,#D,#H {
+				float:left;
+				border: 5px;
+				border-color: blue;
+			}
+
+			.learningSet {
+				float:left;
+				width:100%;
+
+			}
+			.recognition{
+
+			}
+			.clear{
+				clear: both;
+			}
