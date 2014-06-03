@@ -49,6 +49,11 @@
 				  	});
 
 				});
+
+				$("#show").click(function(){
+				$('.learningSet').slideToggle();
+			  	});
+
 				
 			  var isDown = false;
 			
@@ -179,6 +184,8 @@
 			  	});
 			  	empty();
 			  }
+
+
 
 			});	
 			

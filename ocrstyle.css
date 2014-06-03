@@ -1,4 +1,4 @@
-table{
+			table{
 				border-spacing: 1px;
 				float: left;
 				margin-right: 50px;
@@ -18,6 +18,8 @@ table{
 				border-bottom-style: none;
 			}
 
+			
+
 			#A,#B,#G,#D,#H {
 				float:left;
 				border: 5px;
@@ -35,3 +37,5 @@ table{
 			.clear{
 				clear: both;
 			}
+
+			
